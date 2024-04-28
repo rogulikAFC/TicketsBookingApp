@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "XTJyJfTrR3tDjbDCuYsawdXlblYu06YmZo7RZhEPa5c=",
+  "Source": "TicketsBookingApp",
+  "BasePath": "_content/TicketsBookingApp",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
