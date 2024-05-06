@@ -1,5 +1,5 @@
 ﻿namespace TicketsBookingApp.Entities.Repositories
 {
-    public interface ICinemaRepository : ICRUDRepository<Cinema>
+    public interface IPlaceRepository : ICRUDRepository<Place>
     { }
 }

@@ -12,11 +12,14 @@ builder.Services.AddControllers().AddNewtonsoftJson();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<TicketsBookingAppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("TicketsDatabase")));
+builder.Services.AddDbContext<TicketsBookingAppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("TicketsDatabase")));
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddLogging(options => options.SetMinimumLevel(LogLevel.Debug));
 
 var app = builder.Build();
 

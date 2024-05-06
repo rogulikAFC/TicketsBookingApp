@@ -12,6 +12,9 @@ namespace TicketsBookingApp.MappingProfiles
                 .BeforeMap((src, dst) => dst.FullAddress = $"{src.City}, {src.Address}");
 
             CreateMap<CinemaForCreateDto, Cinema>();
+
+            CreateMap<Cinema, CinemaWithoutHallsDto>()
+                .BeforeMap((src, dst) => dst.FullAddress = $"{src.City}, {src.Address}");
         }
     }
 }

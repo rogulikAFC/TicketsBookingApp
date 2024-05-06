@@ -30,14 +30,14 @@ namespace TicketsBookingApp.Entities.Repositories
                 .FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public void Add(Cinema cinema)
+        public void Add(Cinema entity)
         {
-            _context.Cinemas.Add(cinema);
+            _context.Cinemas.Add(entity);
         }
 
-        public void Delete(Cinema cinema)
+        public void Delete(Cinema entity)
         {
-            _context.Remove(cinema);
+            _context.Remove(entity);
         }
     }
 }

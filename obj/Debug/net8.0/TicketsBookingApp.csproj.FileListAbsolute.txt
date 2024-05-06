@@ -108,3 +108,4 @@ C:\Users\malvl\OneDrive\Documents\Programming\School\TicketsBookingApp\bin\Debug
 C:\Users\malvl\OneDrive\Documents\Programming\School\TicketsBookingApp\bin\Debug\net8.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\malvl\OneDrive\Documents\Programming\School\TicketsBookingApp\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\malvl\OneDrive\Documents\Programming\School\TicketsBookingApp\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
+C:\Users\malvl\OneDrive\Documents\Programming\School\TicketsBookingApp\obj\Debug\net8.0\TicketsBookingApp.sourcelink.json
