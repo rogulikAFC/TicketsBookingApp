@@ -28,6 +28,15 @@ namespace TicketsBookingApp.Entities.Repositories
                 .FirstOrDefaultAsync(place => place.Id == id);
         }
 
+        public async Task<Place?> GetByIdAsync(int hallId, int Row, int Col)
+        {
+            return await _context.Places
+                .FirstOrDefaultAsync(place => 
+                    place.HallId == hallId
+                    && place.Row == Row
+                    && place.Col == Col);
+        }
+
         public async Task<IEnumerable<Place>> ListAsync(int pageNum, int pageSize)
         {
             return await _context.Places
