@@ -18,8 +18,10 @@ public class Hall
     [Required]
     public int AlignPlacesId { get; set; }
 
+    [ForeignKey(nameof(AlignPlacesId))]
     public virtual AlignPlace AlignPlaces { get; set; } = null!;
 
+    [ForeignKey(nameof(CinemaId))]
     public virtual Cinema Cinema { get; set; } = null!;
 
     public virtual ICollection<Place> Places { get; set; } = new List<Place>();

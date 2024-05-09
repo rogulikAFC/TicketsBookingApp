@@ -23,8 +23,10 @@ public partial class Session
     [Required]
     public int Price { get; set; }
 
+    [ForeignKey(nameof(CinemaId))]
     public virtual Cinema Cinema { get; set; } = null!;
 
+    [ForeignKey(nameof(FilmId))]
     public virtual Film Film { get; set; } = null!;
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

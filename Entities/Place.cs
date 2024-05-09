@@ -25,6 +25,7 @@ public class Place
     [Required]
     public bool IsTransparent { get; set; } = false;
 
+    [ForeignKey(nameof(HallId))]
     public virtual Hall Hall { get; set; } = null!;
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();

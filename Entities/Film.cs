@@ -24,6 +24,7 @@ public partial class Film
 
     public int? AgeOfRelease { get; set; }
 
+    [ForeignKey(nameof(AgeLimitId))]
     public virtual AgeLimit AgeLimit { get; set; } = null!;
 
     public virtual ICollection<Session> Sessions { get; set; } = new List<Session>();

@@ -33,7 +33,9 @@ public partial class Ticket
     [Required]
     public bool IsUsed { get; set; } = false;
 
+    [ForeignKey(nameof(PlaceId))]
     public virtual Place Place { get; set; } = null!;
 
+    [ForeignKey(nameof(SessionId))]
     public virtual Session Session { get; set; } = null!;
 }
