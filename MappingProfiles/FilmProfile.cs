@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using TicketsBookingApp.Entities;
 using TicketsBookingApp.Models.Film;
 
@@ -9,9 +10,11 @@ namespace TicketsBookingApp.MappingProfiles
         public FilmProfile()
         {
             CreateMap<Film, FilmDto>()
-                .AfterMap((src, dest) => dest.AgeLimit = src.AgeLimit?.Value);
+                .ForMember(dest => dest.AgeLimit,
+                    opt => opt.MapFrom(src => src.AgeLimit!.Value));
 
-            CreateMap<FilmForCreateDto, Film>();
+            CreateMap<FilmForCreateDto, Film>()
+                .ForMember(src => src.AgeLimit, opt => opt.Ignore());
         }
     }
 }

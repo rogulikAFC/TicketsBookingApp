@@ -26,12 +26,14 @@ namespace TicketsBookingApp.Entities.Repositories
         public async Task<Film?> GetByIdAsync(int id)
         {
             return await _dbContext.Films
+                .Include(f => f.AgeLimit)
                 .FirstOrDefaultAsync(f => f.Id == id);
         }
 
         public async Task<IEnumerable<Film>> ListAsync(int pageNum, int pageSize)
         {
             return await _dbContext.Films
+                .Include(f => f.AgeLimit)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
