@@ -1,14 +1,21 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TicketsBookingApp.Entities;
 
-public partial class Hall
+public class Hall
 {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
 
+    [Required]
     public int CinemaId { get; set; }
 
+    [Required]
     public int AlignPlacesId { get; set; }
 
     public virtual AlignPlace AlignPlaces { get; set; } = null!;
