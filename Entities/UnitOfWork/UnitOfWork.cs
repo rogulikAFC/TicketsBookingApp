@@ -16,6 +16,8 @@ namespace TicketsBookingApp.Entities.UnitOfWork
             HallRepository = new HallRepository(_context);
 
             PlaceRepository = new PlaceRepository(_context);
+
+            FilmRepository = new FilmRepository(_context);
         }
 
         public ICinemaRepository CinemaRepository { get; }
@@ -23,6 +25,8 @@ namespace TicketsBookingApp.Entities.UnitOfWork
         public IHallRepository HallRepository { get; }
 
         public IPlaceRepository PlaceRepository { get; }
+
+        public IFilmRepository FilmRepository { get; }
 
         public async Task<bool> SaveChangesAsync()
         {
