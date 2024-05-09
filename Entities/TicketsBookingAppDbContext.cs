@@ -34,5 +34,6 @@ public partial class TicketsBookingAppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     { }
 
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }
