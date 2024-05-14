@@ -26,264 +26,217 @@ namespace TicketsBookingApp.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Value")
-                        .HasColumnType("integer")
-                        .HasColumnName("value");
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("agelimits_pkey");
+                    b.HasKey("Id");
 
-                    b.HasIndex(new[] { "Value" }, "agelimits_value_key")
-                        .IsUnique();
-
-                    b.ToTable("age_limits", (string)null);
+                    b.ToTable("AgeLimits");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.AlignPlace", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasMaxLength(16)
-                        .HasColumnType("character varying(16)")
-                        .HasColumnName("value");
+                        .HasColumnType("character varying(16)");
 
-                    b.HasKey("Id")
-                        .HasName("alignplaces_pkey");
+                    b.HasKey("Id");
 
-                    b.ToTable("align_places", (string)null);
+                    b.ToTable("AlignPlaces");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Cinema", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
                         .IsRequired()
                         .HasMaxLength(256)
-                        .HasColumnType("character varying(256)")
-                        .HasColumnName("address");
+                        .HasColumnType("character varying(256)");
 
                     b.Property<string>("City")
                         .IsRequired()
                         .HasMaxLength(64)
-                        .HasColumnType("character varying(64)")
-                        .HasColumnName("city");
+                        .HasColumnType("character varying(64)");
 
                     b.Property<string>("Inn")
                         .IsRequired()
                         .HasMaxLength(12)
-                        .HasColumnType("character varying(12)")
-                        .HasColumnName("inn");
+                        .HasColumnType("character varying(12)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text")
-                        .HasColumnName("name");
+                        .HasMaxLength(32)
+                        .HasColumnType("character varying(32)");
 
-                    b.HasKey("Id")
-                        .HasName("cinema_pkey");
+                    b.HasKey("Id");
 
-                    b.ToTable("cinemas", (string)null);
+                    b.ToTable("Cinemas");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Film", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("AgeLimitId")
-                        .HasColumnType("integer")
-                        .HasColumnName("age_limit_id");
+                    b.Property<int>("AgeLimitId")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("AgeOfRelease")
-                        .HasColumnType("integer")
-                        .HasColumnName("age_of_release");
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
-                        .HasColumnType("text")
-                        .HasColumnName("description");
+                        .HasMaxLength(2048)
+                        .HasColumnType("character varying(2048)");
 
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasMaxLength(128)
-                        .HasColumnType("character varying(128)")
-                        .HasColumnName("title");
+                        .HasColumnType("character varying(128)");
 
-                    b.HasKey("Id")
-                        .HasName("films_pkey");
+                    b.HasKey("Id");
 
                     b.HasIndex("AgeLimitId");
 
-                    b.ToTable("films", (string)null);
+                    b.ToTable("Films");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Hall", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("AlignPlacesId")
-                        .HasColumnType("integer")
-                        .HasColumnName("align_places_id");
+                        .HasColumnType("integer");
 
                     b.Property<int>("CinemaId")
-                        .HasColumnType("integer")
-                        .HasColumnName("cinema_id");
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("halls_pkey");
+                    b.HasKey("Id");
 
                     b.HasIndex("AlignPlacesId");
 
                     b.HasIndex("CinemaId");
 
-                    b.ToTable("halls", (string)null);
+                    b.ToTable("Halls");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Place", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Col")
-                        .HasColumnType("integer")
-                        .HasColumnName("col");
+                        .HasColumnType("integer");
 
-                    b.Property<int?>("HallId")
-                        .IsRequired()
-                        .HasColumnType("integer")
-                        .HasColumnName("hall_id");
+                    b.Property<int>("HallId")
+                        .HasColumnType("integer");
 
-                    b.Property<bool?>("IsTransparent")
-                        .IsRequired()
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false)
-                        .HasColumnName("is_transparent");
+                    b.Property<bool>("IsTransparent")
+                        .HasColumnType("boolean");
 
                     b.Property<int>("Row")
-                        .HasColumnType("integer")
-                        .HasColumnName("row");
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("place_pkey");
+                    b.HasKey("Id");
 
-                    b.HasAlternateKey("HallId", "Col", "Row");
+                    b.HasIndex("HallId");
 
-                    b.ToTable("places", (string)null);
+                    b.HasIndex("Row", "Col", "HallId")
+                        .IsUnique();
+
+                    b.ToTable("Places");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Session", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CinemaId")
-                        .HasColumnType("integer")
-                        .HasColumnName("cinema_id");
+                    b.Property<int>("CinemaId")
+                        .HasColumnType("integer");
 
-                    b.Property<DateTime?>("DateAndTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("date_and_time");
+                    b.Property<DateTime>("DateAndTime")
+                        .HasColumnType("timestamp with time zone");
 
-                    b.Property<int?>("FilmId")
-                        .HasColumnType("integer")
-                        .HasColumnName("film_id");
+                    b.Property<int>("FilmId")
+                        .HasColumnType("integer");
 
-                    b.Property<int?>("Price")
-                        .HasColumnType("integer")
-                        .HasColumnName("price");
+                    b.Property<int>("Price")
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("sessions_pkey");
+                    b.HasKey("Id");
 
                     b.HasIndex("CinemaId");
 
                     b.HasIndex("FilmId");
 
-                    b.ToTable("sessions", (string)null);
+                    b.ToTable("Sessions");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Ticket", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer")
-                        .HasColumnName("id");
+                        .HasColumnType("integer");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime?>("BookDateAndTime")
-                        .HasColumnType("timestamp with time zone")
-                        .HasColumnName("book_date_and_time");
+                    b.Property<DateTime>("BookDateAndTime")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(254)
-                        .HasColumnType("character varying(254)")
-                        .HasColumnName("email");
+                        .HasColumnType("text");
 
-                    b.Property<bool?>("IsUsed")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("boolean")
-                        .HasDefaultValue(false)
-                        .HasColumnName("is_used");
+                    b.Property<bool>("IsUsed")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("character varying(13)")
-                        .HasColumnName("phone");
+                        .HasColumnType("text");
 
-                    b.Property<int?>("PlaceId")
-                        .HasColumnType("integer")
-                        .HasColumnName("place_id");
+                    b.Property<int>("PlaceId")
+                        .HasColumnType("integer");
 
-                    b.Property<int?>("SessionId")
-                        .HasColumnType("integer")
-                        .HasColumnName("session_id");
+                    b.Property<int>("SessionId")
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("tickets_pkey");
+                    b.HasKey("Id");
 
                     b.HasIndex("PlaceId");
 
-                    b.HasIndex("SessionId");
+                    b.HasIndex("SessionId", "PlaceId")
+                        .IsUnique();
 
-                    b.ToTable("tickets", (string)null);
+                    b.ToTable("Tickets");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Film", b =>
@@ -291,7 +244,8 @@ namespace TicketsBookingApp.Migrations
                     b.HasOne("TicketsBookingApp.Entities.AgeLimit", "AgeLimit")
                         .WithMany("Films")
                         .HasForeignKey("AgeLimitId")
-                        .HasConstraintName("films_agelimitid_fkey");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AgeLimit");
                 });
@@ -302,15 +256,13 @@ namespace TicketsBookingApp.Migrations
                         .WithMany("Halls")
                         .HasForeignKey("AlignPlacesId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("hall_alignplacesid_fkey");
+                        .IsRequired();
 
                     b.HasOne("TicketsBookingApp.Entities.Cinema", "Cinema")
                         .WithMany("Halls")
                         .HasForeignKey("CinemaId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("hall_cinemaid_fkey");
+                        .IsRequired();
 
                     b.Navigation("AlignPlaces");
 
@@ -323,8 +275,7 @@ namespace TicketsBookingApp.Migrations
                         .WithMany("Places")
                         .HasForeignKey("HallId")
                         .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired()
-                        .HasConstraintName("place_hallid_fkey");
+                        .IsRequired();
 
                     b.Navigation("Hall");
                 });
@@ -334,12 +285,14 @@ namespace TicketsBookingApp.Migrations
                     b.HasOne("TicketsBookingApp.Entities.Cinema", "Cinema")
                         .WithMany("Sessions")
                         .HasForeignKey("CinemaId")
-                        .HasConstraintName("sessions_cinemaid_fkey");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TicketsBookingApp.Entities.Film", "Film")
                         .WithMany("Sessions")
                         .HasForeignKey("FilmId")
-                        .HasConstraintName("sessions_filmid_fkey");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Cinema");
 
@@ -351,12 +304,14 @@ namespace TicketsBookingApp.Migrations
                     b.HasOne("TicketsBookingApp.Entities.Place", "Place")
                         .WithMany("Tickets")
                         .HasForeignKey("PlaceId")
-                        .HasConstraintName("tickets_placeid_fkey");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("TicketsBookingApp.Entities.Session", "Session")
                         .WithMany("Tickets")
                         .HasForeignKey("SessionId")
-                        .HasConstraintName("tickets_sessionid_fkey");
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Place");
 
