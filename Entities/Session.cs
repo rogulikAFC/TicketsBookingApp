@@ -12,10 +12,10 @@ public partial class Session
     public int Id { get; set; }
 
     [Required]
-    public int CinemaId { get; set; }
+    public int FilmId { get; set; }
 
     [Required]
-    public int FilmId { get; set; }
+    public int HallId { get; set; }
 
     [Required]
     public DateTime DateAndTime { get; set; }
@@ -23,11 +23,11 @@ public partial class Session
     [Required]
     public int Price { get; set; }
 
-    [ForeignKey(nameof(CinemaId))]
-    public virtual Cinema Cinema { get; set; } = null!;
-
     [ForeignKey(nameof(FilmId))]
     public virtual Film Film { get; set; } = null!;
+
+    [ForeignKey(nameof(HallId))]
+    public virtual Hall Hall { get; set; } = null!;
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 }
