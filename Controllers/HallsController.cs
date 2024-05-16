@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using TicketsBookingApp.Entities;
 using TicketsBookingApp.Entities.UnitOfWork;
+using TicketsBookingApp.Migrations;
 using TicketsBookingApp.Models.Hall;
 
 namespace TicketsBookingApp.Controllers
@@ -55,15 +56,28 @@ namespace TicketsBookingApp.Controllers
             return Ok(hallDtos);
         }
 
-        // GET: api/Halls/{id}
+        // GET: api/Halls/{id}?{sessionId}
         [HttpGet("{id}")]
-        public async Task<ActionResult<HallDto?>> GetById(int id)
+        public async Task<ActionResult<HallDto?>> GetById(
+            int id, [FromQuery] int sessionId = -1)
         {
             var hall = await _unitOfWork.HallRepository
                 .GetByIdAsync(id);
 
             if (hall == null) return NotFound(nameof(id));
 
+            if (sessionId != -1)    // compiler don't convert int? to int after null checking.
+            {
+                var session = await _unitOfWork.SessionRepository
+                    .GetByIdAsync(sessionId);
+
+                if (session == null) return NotFound(nameof(sessionId));
+
+                hall.Places = (ICollection<Place>)await _unitOfWork
+                    .PlaceRepository
+                    .PlacesWithStatusBySession(session);    
+            } 
+            
             var hallDto = _mapper.Map<HallDto>(hall);
 
             return Ok(hallDto);

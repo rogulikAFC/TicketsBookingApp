@@ -29,4 +29,7 @@ public class Place
     public virtual Hall Hall { get; set; } = null!;
 
     public virtual ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
+
+    [NotMapped]
+    public bool? IsBooked { get; set; }
 }
