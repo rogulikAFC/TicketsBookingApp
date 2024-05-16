@@ -43,7 +43,7 @@ namespace TicketsBookingApp.Controllers
             [FromQuery] int pageSize = 3, [FromQuery] int pageNum = 1)
         {
             var halls = await _unitOfWork.HallRepository
-                .ListAsync(pageSize, pageNum);
+                .ListAsync(pageNum, pageSize);
 
             var hallDtos = new List<HallDto>();
 

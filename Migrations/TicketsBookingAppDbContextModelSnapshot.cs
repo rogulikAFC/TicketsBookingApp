@@ -180,13 +180,16 @@ namespace TicketsBookingApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CinemaId")
+                    b.Property<int?>("CinemaId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("DateAndTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<int>("FilmId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("HallId")
                         .HasColumnType("integer");
 
                     b.Property<int>("Price")
@@ -197,6 +200,8 @@ namespace TicketsBookingApp.Migrations
                     b.HasIndex("CinemaId");
 
                     b.HasIndex("FilmId");
+
+                    b.HasIndex("HallId");
 
                     b.ToTable("Sessions");
                 });
@@ -282,11 +287,9 @@ namespace TicketsBookingApp.Migrations
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Session", b =>
                 {
-                    b.HasOne("TicketsBookingApp.Entities.Cinema", "Cinema")
+                    b.HasOne("TicketsBookingApp.Entities.Cinema", null)
                         .WithMany("Sessions")
-                        .HasForeignKey("CinemaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CinemaId");
 
                     b.HasOne("TicketsBookingApp.Entities.Film", "Film")
                         .WithMany("Sessions")
@@ -294,9 +297,15 @@ namespace TicketsBookingApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Cinema");
+                    b.HasOne("TicketsBookingApp.Entities.Hall", "Hall")
+                        .WithMany()
+                        .HasForeignKey("HallId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Film");
+
+                    b.Navigation("Hall");
                 });
 
             modelBuilder.Entity("TicketsBookingApp.Entities.Ticket", b =>

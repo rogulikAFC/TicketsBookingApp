@@ -12,6 +12,8 @@ namespace TicketsBookingApp.Entities.UnitOfWork
 
         IFilmRepository FilmRepository { get; }
 
+        ISessionRepository SessionRepository { get; }
+
         public Task<bool> SaveChangesAsync();
     }
 }
