@@ -37,6 +37,7 @@ namespace TicketsBookingApp.Entities.Repositories
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize)
                 .Include(h => h.Places)
+                .Include(h => h.Cinema)
                 .ToListAsync();
         }
     }

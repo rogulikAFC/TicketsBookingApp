@@ -9,5 +9,7 @@ namespace TicketsBookingApp.Models.Session
         public int FilmId { get; set; }
 
         public DateTime DateAndTime { get; set; }
+
+        public int Price { get; set; }
     }
 }
