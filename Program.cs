@@ -1,4 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using System.Net;
+using System.Net.Mail;
+using System.Reflection.Metadata.Ecma335;
+using TicketsBookingApp.EmailService;
 using TicketsBookingApp.Entities;
 using TicketsBookingApp.Entities.UnitOfWork;
 
@@ -20,6 +24,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddLogging(options => options.SetMinimumLevel(LogLevel.Debug));
+
+builder.Services.AddSingleton<IEmailService, EmailService>();
 
 var app = builder.Build();
 
