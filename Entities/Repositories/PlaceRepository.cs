@@ -44,5 +44,21 @@ namespace TicketsBookingApp.Entities.Repositories
                 .Take(pageSize)
                 .ToListAsync();
         }
+
+        public async Task<IEnumerable<Place>> PlacesWithStatusBySession(Session session)
+        {
+            var places = _context.Places
+                .Where(p => p.HallId == session.HallId);
+
+            await places.ForEachAsync(p => p.IsBooked = false);
+
+            await places
+                .Where(p => p.Tickets
+                    .Where(t => t.SessionId == session.Id)
+                    .Any())
+                .ForEachAsync(p => p.IsBooked = true);
+
+            return await places.ToListAsync();
+        }
     }
 }

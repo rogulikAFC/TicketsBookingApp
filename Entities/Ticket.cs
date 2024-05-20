@@ -22,7 +22,7 @@ public partial class Ticket
     public string Phone { get; set; } = null!;
 
     [Required]
-    public DateTime BookDateAndTime { get; set; }
+    public DateTime BookDateAndTime { get; set; } = DateTime.Now;
 
     [Required]
     public int SessionId { get; set; }

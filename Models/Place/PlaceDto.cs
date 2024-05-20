@@ -9,5 +9,7 @@
         public int Col { get; set; }
 
         public bool IsTransparent { get; set; }
+
+        public bool? IsBooked { get; set; }
     }
 }

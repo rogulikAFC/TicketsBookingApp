@@ -32,7 +32,10 @@ public partial class TicketsBookingAppDbContext : DbContext
     public virtual DbSet<Ticket> Tickets { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
-    { }
+    {
+        modelBuilder.Entity<Place>()
+            .Ignore(p => p.IsBooked);
+    }
 
 
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
