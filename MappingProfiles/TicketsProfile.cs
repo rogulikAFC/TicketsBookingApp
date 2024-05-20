@@ -10,7 +10,9 @@ namespace TicketsBookingApp.MappingProfiles
         {
             CreateMap<TicketForCreateDto, Ticket>();
             
-            CreateMap<Ticket, TicketDto>();
+            CreateMap<Ticket, TicketDto>()
+                .AfterMap((s, d) => d.Session.Hall.Places = [])
+                .AfterMap((s, d) => d.Place.IsBooked = true);
         }
     }
 }
